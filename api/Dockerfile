@@ -11,8 +11,8 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
-# Copy and install Python dependencies
-COPY requirements.txt /app/
+# Copy and install Python dependencies. Use './' to refer to the current directory.
+COPY ./requirements.txt /app/
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the entire API code into the container
