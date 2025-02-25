@@ -17,6 +17,7 @@ import pickle
 import os
 from deep_translator import GoogleTranslator
 from langdetect import detect
+import sys
 
 app = Flask(__name__)
 CORS(app)
@@ -40,6 +41,23 @@ def setup_driver():
     options.add_argument('--no-sandbox')
     options.add_argument('--disable-dev-shm-usage')
     options.add_argument('--window-size=1920,1080')
+    options.add_argument('--headless')  # headless mode enabled
+
+    if sys.platform == 'darwin':
+        mac_path = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
+        if os.path.exists(mac_path):
+            options.binary_location = mac_path
+        else:
+            raise Exception("Chrome binary not found on macOS. Install Google Chrome (e.g., via 'brew install --cask google-chrome').")
+    else:
+        binary = os.environ.get('GOOGLE_CHROME_BIN')
+        if binary and os.path.exists(binary):
+            options.binary_location = binary
+        else:
+            for path in ['/usr/bin/google-chrome', '/usr/bin/google-chrome-stable', '/usr/bin/chromium-browser', '/usr/bin/chromium']:
+                if os.path.exists(path):
+                    options.binary_location = path
+                    break
     service = Service(ChromeDriverManager().install())
     return webdriver.Chrome(service=service, options=options)
 
@@ -221,11 +239,8 @@ def analyze_reviews_with_rf():
         'sentiment_distribution': sentiment_distribution,
         'sentiment_plot': 'static/sentiment.png'
     }
-@app.route('/',methods=['POST'])
-def index():
-    return "Hello World"        
 
-@app.route('/analyze', methods=['POST'])
+@app.route('/', methods=['POST'])
 def analyze():
     """API endpoint to analyze product reviews."""
     try:
@@ -266,4 +281,4 @@ def analyze():
         return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8000, debug=True)  # updated to bind to 0.0.0.0
+    app.run(host='0.0.0.0',port=8000, debug=True)

@@ -9,7 +9,7 @@
     "storage"
   ],
   "host_permissions": [
-    "http://localhost:8000/*",
+    "https://api-minor-pbeo.onrender.com/*",
     "*://*.daraz.com.np/*"
   ],
   "content_security_policy": {

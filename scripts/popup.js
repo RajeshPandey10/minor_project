@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:8000/analyze';
+const API_URL = 'https://api-minor-pbeo.onrender.com';
 
 // Enhanced scraping with language support
 async function scrapeReviews() {
@@ -78,7 +78,7 @@ async function runAnalysis(elements) {
     }
     // Prevent caching and use full URL for the sentiment image
     const timestamp = new Date().getTime();
-    const sentimentPlotUrl = `http://localhost:8000/${results.sentiment_plot}?t=${timestamp}`;
+    const sentimentPlotUrl = `https://api-minor-pbeo.onrender.com/${results.sentiment_plot}?t=${timestamp}`;
     document.getElementById('sentimentPlot').src = sentimentPlotUrl;
     document.getElementById('sentimentPlot').classList.remove("hidden");
     document.getElementById('loadingSpinner').classList.add("hidden");
@@ -244,7 +244,12 @@ document.addEventListener('DOMContentLoaded', () => {
       new URL(tabs[0].url).hostname;
   });
 
-  elements.analyzeBtn.addEventListener('click', () => runAnalysis(elements));
+  const analyzeBtn = document.getElementById('analyzeBtn');
+  if (!analyzeBtn) {
+    console.error('analyzeBtn element not found in popup.html');
+    return;
+  }
+  analyzeBtn.addEventListener('click', () => runAnalysis(elements));
 
   // Initialize extension state
   const initializeExtension = () => {
@@ -360,7 +365,7 @@ document.addEventListener('DOMContentLoaded', () => {
         state.isAnalyzing = true;
         
         try {
-            const response = await fetch('http://localhost:8000/analyze', {
+            const response = await fetch('https://api-minor-pbeo.onrender.com', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
