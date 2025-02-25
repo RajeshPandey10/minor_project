@@ -10,10 +10,10 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
-# Copy requirements and install them
+# Copy and install Python dependencies
 COPY requirements.txt /app/
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the rest of the application code (including server1.py and other files)
+# Copy your entire API code into the container
 COPY . /app/
 CMD ["python", "server1.py"]
