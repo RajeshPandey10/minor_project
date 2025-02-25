@@ -48,7 +48,7 @@ const About = () => {
       role: 'Computer Engineer',
       github: 'https://github.com/ravix2001',
       linkedin: 'https://www.linkedin.com/in/ravipandit2001/',
-      image: 'https://media-del1-2.cdn.whatsapp.net/v/t61.24694-24/466699406_999616012184444_2368940458060533403_n.jpg?ccb=11-4&oh=01_Q5AaIIt_BuGm9-zkPnGjRcjrU98l_8dfZ9Pdq0jq3ihW3gZ2&oe=67C14E5F&_nc_sid=5e03e0&_nc_cat=106' // Add image URL when available
+      image: 'https://www.ravi-pandit.com.np/image.png' // Add image URL when available
     },
     {
       name: 'Nigam Yadav',

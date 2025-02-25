@@ -1,4 +1,4 @@
-const API_URL = 'https://api-minor-pbeo.onrender.com/analyze';
+const API_URL = 'http://localhost:8000/analyze';
 
 // Enhanced scraping with language support
 async function scrapeReviews() {
@@ -78,7 +78,7 @@ async function runAnalysis(elements) {
     }
     // Prevent caching and use full URL for the sentiment image
     const timestamp = new Date().getTime();
-    const sentimentPlotUrl = `https://api-minor-pbeo.onrender.com/${results.sentiment_plot}?t=${timestamp}`;
+    const sentimentPlotUrl = `http://localhost:8000/${results.sentiment_plot}?t=${timestamp}`;
     document.getElementById('sentimentPlot').src = sentimentPlotUrl;
     document.getElementById('sentimentPlot').classList.remove("hidden");
     document.getElementById('loadingSpinner').classList.add("hidden");
@@ -108,7 +108,7 @@ function updateRecommendation(elements, confidenceScore) {
     recommendationText = 'Excellent! You can go with this product.';
     recommendationClass = 'bg-green-100 text-green-800';
   } else if (confidenceScore >= 5) {
-    recommendationText = 'Could be better. Average product.';
+    recommendationText = 'Average product.Could be better. ';
     recommendationClass = 'bg-yellow-100 text-yellow-800';
   } else {
     recommendationText = 'Not recommended. Consider other options.';
@@ -360,7 +360,7 @@ document.addEventListener('DOMContentLoaded', () => {
         state.isAnalyzing = true;
         
         try {
-            const response = await fetch('https://api-minor-pbeo.onrender.com/analyze', {
+            const response = await fetch('http://localhost:8000/analyze', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
