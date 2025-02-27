@@ -99,9 +99,12 @@ async function runAnalysis(elements) {
         sentimentPlotUrl = `https://api-for-minor-project.onrender.com/static/sentiment.png?t=${timestamp}`;
     }
 
-    document.getElementById('sentimentPlot').src = sentimentPlotUrl;
-    document.getElementById('sentimentPlot').classList.remove("hidden");
-    document.getElementById('loadingSpinner').classList.add("hidden");
+    const sentimentPlot = document.getElementById('sentimentPlot');
+    sentimentPlot.src = sentimentPlotUrl;
+    sentimentPlot.onload = () => {
+      document.getElementById('loadingSpinner').classList.add('hidden');
+      sentimentPlot.classList.remove("hidden");
+    };
 
     // Update recommendation based on confidence score
     updateRecommendation(elements, parseFloat(results.confidence_score) || 0);
