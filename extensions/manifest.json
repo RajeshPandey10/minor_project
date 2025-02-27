@@ -8,9 +8,11 @@
     "scripting",
     "storage"
   ],
+  "icons": {
+    "48": "icon.png"
+  },
   "host_permissions": [
     "https://*.amazon.in/*",
-    "http://127.0.0.1:8000/*",
     "https://*.daraz.com.np/*",
     "https://api-for-minor-project.onrender.com/*"
   ],
@@ -18,6 +20,7 @@
     "extension_pages": "script-src 'self'; object-src 'self'"
   },
   "action": {
-    "default_popup": "popup.html"
+    "default_popup": "popup.html",
+    "default_icon": "icon.png"
   }
 }
