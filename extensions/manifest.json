@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "Product Review Insight",
+  "version": "1.0",
+  "description": "AI-Powered Review Analysis",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://*.amazon.in/*",
+    "http://127.0.0.1:8000/*",
+    "https://*.daraz.com.np/*",
+    "https://api-for-minor-project.onrender.com/*"
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  },
+  "action": {
+    "default_popup": "popup.html"
+  }
+}
