@@ -6,7 +6,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import TimeoutException, StaleElementReferenceException
+from selenium.common.exceptions import StaleElementReferenceException
 import pandas as pd
 import matplotlib
 matplotlib.use('Agg')  # Set backend before importing pyplot
@@ -17,6 +17,8 @@ import pickle
 import os
 from deep_translator import GoogleTranslator
 from langdetect import detect
+
+# for daraz reviews
 
 app = Flask(__name__)
 CORS(app)
