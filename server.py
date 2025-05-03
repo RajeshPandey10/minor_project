@@ -18,7 +18,7 @@ app = Flask(__name__)
 CORS(app)
 
 # Your ScraperAPI key
-SCRAPERAPI_KEY = "5ea6d341200743e19427a02d210e496f"
+SCRAPERAPI_KEY = ""
 
 def scrape_amazon_reviews(url):
     scraperapi_url = f"http://api.scraperapi.com/?api_key={SCRAPERAPI_KEY}&url={url}"
